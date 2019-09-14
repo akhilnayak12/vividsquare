@@ -7573,8 +7573,7 @@ footer .footer__in .footer--bottom #back--top:hover span {
 .services--page .services--page__in .block {
   display: block;
   float: left;
-  min-width: 33%;
-  height: 300px; }
+  min-width: 33%; }
 
 .services--page .services--page__in .block .block__in {
   max-width: 360px;
