@@ -6957,11 +6957,11 @@ a.button.portfolio__button .right span {
   z-index: 5; }
 
 .our_company #owl-our_company {
-  width: 27.8%;
-  height: 360px;
+  width: 40%;
+  height: 400px;
   position: absolute;
   bottom: 0;
-  right: 25.4%;
+  right: 25%;
   background-color: #ffffff;
   z-index: 15;
   padding: 3.3% 3.3% 0;
@@ -6975,7 +6975,7 @@ a.button.portfolio__button .right span {
   margin-bottom: 10px; }
 
 .our_company #owl-our_company p {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 300;
   line-height: 25px;
   padding-bottom: 15px;
