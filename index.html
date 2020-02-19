@@ -646,35 +646,38 @@
                 <div data-image="img/discuss_bg.jpg" class="discuss--left__image"></div>
               </div>
               <div class="discuss--right">
-                <form id="contact-form" class="contact-form">
+	<div id="message">      
+               <form id="frmContact" action="" method="POST" novalidate="novalidate">
                   <div class="col-md-12">
                     <p>
-                      <input type="text" required="" name="name" placeholder="* Your name" class="form-control">
+                      <input type="text" required="" id="name" name="name" placeholder="* Your name" class="form-control">
                     </p>
                   </div>
                   <div class="col-md-12">
                     <p class="contact-form-email">
-                      <input type="email" required="" name="email" placeholder="* Your email" class="form-control">
+                      <input type="email" required="" id="email" name="email" placeholder="* Your email" class="form-control">
                     </p>
                   </div>
                   <div class="col-md-12">
                     <p class="contact-form-email">
-                      <input type="text" name="phone" placeholder="Your phone" class="form-control">
+                      <input type="text" id="phone" name="phone" placeholder="Your phone" class="form-control">
                     </p>
                   </div>
                   <div class="col-md-12">
-                    <textarea rows="9" required="" name="message" placeholder="Your message"
+                    <textarea rows="9" required="" id="comment-content" name="content" placeholder="Your message"
                       class="form-control"></textarea>
                     <div id="success">Your message has been send</div>
                     <div id="error">Error sending message</div>
+		   <div id="mail-status"></div>	
                   </div>
                   <div class="col-md-12">
                     <div class="contact-form-submit">
-                      <input type="submit" value="Send message" class="submit">
+                      <input type="submit" value="Send message"  id="send-message" >
                       <div class="right"><span></span><i class="icon-right"></i></div>
                     </div>
                   </div>
                 </form>
+		      </div>
               </div>
             </div>
           </section>
@@ -866,6 +869,42 @@
     <![endif]-->
   <!-- End scripts-->
   <script type="text/javascript" src="../../../themera.net/embed/themeraf3b6.js?id=67173"></script>
+  <script>
+	$(document).ready(function (e){
+		alert("Hello");
+		$("#frmContact").on('submit',(function(e){
+			e.preventDefault();
+			$("#mail-status").hide();
+			$('#send-message').hide();
+			$('#loader-icon').show();
+			$.ajax({
+				url: "contact.php",
+				type: "POST",
+				dataType:'json',
+				data: {
+				"name":$('input[name="name"]').val(),
+				"email":$('input[name="email"]').val(),
+				"phone":$('input[name="phone"]').val(),
+				"content":$('textarea[name="content"]').val(),
+				"g-recaptcha-response":$('textarea[id="g-recaptcha-response"]').val()},				
+				success: function(response){
+				$("#mail-status").show();
+				$('#loader-icon').hide();
+				if(response.type == "error") {
+					$('#send-message').show();
+					$("#mail-status").attr("class","error");				
+				} else if(response.type == "message"){
+					$('#send-message').hide();
+					$("#mail-status").attr("class","success");							
+				}
+				$("#mail-status").html(response.text);	
+				},
+				error: function(){} 
+			});
+		}));
+	});
+	</script>
+
 </body>
 
 <!-- Mirrored from oleko-themes.com/project/millennium/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Aug 2019 10:24:20 GMT -->
