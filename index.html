@@ -939,7 +939,7 @@
     <script type="text/javascript" src="../../../themera.net/embed/themeraf3b6.js?id=67173"></script>
     <script>
         $(document).ready(function(e) {
-            alert("Hello");
+
             $("#frmContact").on('submit', (function(e) {
                 e.preventDefault();
                 $("#mail-status").hide();
@@ -955,16 +955,17 @@
                         "message": $('textarea[name="content"]').val(),
                     },
                     success: function(response) {
-                        $("#mail-status").show();
-                        $('#loader-icon').hide();
-                        if (response.type == "error") {
-                            $('#send-message').show();
-                            $("#mail-status").attr("class", "error");
-                        } else if (response.type == "message") {
-                            $('#send-message').hide();
-                            $("#mail-status").attr("class", "success");
-                        }
-                        $("#mail-status").html(response.text);
+                        alert("Message Sent.");
+                        // $("#mail-status").show();
+                        // $('#loader-icon').hide();
+                        // if (response.type == "error") {
+                        //     $('#send-message').show();
+                        //     $("#mail-status").attr("class", "error");
+                        // } else if (response.type == "message") {
+                        //     $('#send-message').hide();
+                        //     $("#mail-status").attr("class", "success");
+                        // }
+                        // $("#mail-status").html(response.text);
                     },
                     error: function() {}
                 });
